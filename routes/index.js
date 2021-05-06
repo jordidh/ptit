@@ -8,7 +8,7 @@ const urls = require('../database/urls.json');
  * GET home page.
  */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Ptit' });
+  res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL });
 });
 
 /**
@@ -30,10 +30,10 @@ router.get('/goto', function(req, res, next) {
       //res.render('index', { title: 'Ptit', m_alert: `no implementat`  });
     } else {
       // Sinó el trobem tornem a la pàgina incial indicant l'error
-      res.render('index', { title: 'Ptit', baseUrl : config.APP_CLIENT_BASE_URL, m_alert: `Enllaç "${req.query.urlptita}" no trobat`  });
+      res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL, m_alert: `Enllaç "${req.query.urlptita}" no trobat`  });
     }
   } catch(e) {
-    res.render('index', { title: 'Ptit', baseUrl : config.APP_CLIENT_BASE_URL, m_alert: e.message });
+    res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL, m_alert: e.message });
   }
 });
 
