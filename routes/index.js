@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const config = require('../config/config');
 
 const urls = require('../database/urls.json');
 
@@ -29,10 +30,10 @@ router.get('/goto', function(req, res, next) {
       //res.render('index', { title: 'Ptit', m_alert: `no implementat`  });
     } else {
       // Sinó el trobem tornem a la pàgina incial indicant l'error
-      res.render('index', { title: 'Ptit', m_alert: `Enllaç "${req.query.urlptita}" no trobat`  });
+      res.render('index', { title: 'Ptit', baseUrl : config.APP_CLIENT_BASE_URL, m_alert: `Enllaç "${req.query.urlptita}" no trobat`  });
     }
   } catch(e) {
-    res.render('index', { title: 'Ptit', m_alert: e.message });
+    res.render('index', { title: 'Ptit', baseUrl : config.APP_CLIENT_BASE_URL, m_alert: e.message });
   }
 });
 

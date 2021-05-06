@@ -5,7 +5,7 @@ html
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         title ptit
-        link(rel='stylesheet' href='/stylesheets/style.css')
+        link(rel='stylesheet' href=baseUrl + '/stylesheets/style.css')
         block extraHead
         block extraStyles
         block extraScripts
@@ -17,11 +17,11 @@ html
         nav
             ul.topnav
                 li
-                    a(href='/users/createaccount') Create Account
+                    a(href=baseUrl + '/users/createaccount') Create Account
                 li
-                    a(href='/users/signin') Sign In
+                    a(href=baseUrl + '/users/signin') Sign In
                 li
-                    a(href='/') Inici
+                    a(href=baseUrl + '/') Inici
         div
             if (msgAlert)
                 div.alert
