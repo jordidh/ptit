@@ -1,0 +1,342 @@
+body {
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 0px solid green;
+  padding: 10px;
+}
+
+main {
+  margin: 20px;
+}
+
+footer {
+  margin: 20px;
+}
+
+
+/* Estils per la barra de navegació superior */
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+ul.topnav li {
+  float: right;
+}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {
+  background-color: #111;
+}
+
+ul.topnav li a.active {
+  background-color: #4CAF50;
+}
+
+ul.topnav li.right {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right,
+  ul.topnav li {
+      float: none;
+  }
+}
+
+
+/* Estils perls missatges d'error */
+
+.alert {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {
+  background-color: #4CAF50;
+}
+
+.alert.info {
+  background-color: #2196F3;
+}
+
+.alert.warning {
+  background-color: #ff9800;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+
+/* Estils pels documents */
+
+.plan {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  background: #F4ECF7;
+}
+
+.plan li {
+  margin-left: 20px;
+}
+
+.development {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  background: #EBF5FB;
+}
+
+.development li {
+  margin-left: 20px;
+}
+
+.deployment {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  background: #EAFAF1;
+}
+
+.deployment li {
+  margin-left: 20px;
+}
+
+.maintenance {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  background: #FEF5E7;
+}
+
+.maintenance li {
+  margin-left: 20px;
+}
+
+.disaster {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  background: #FDEDEC;
+}
+
+.disaster li {
+  margin-left: 20px;
+}
+
+
+/* Estils per les taules */
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+th.comment,
+td.comment {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+th.ticket,
+td.ticket {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+th {
+  background-color: #0B3861;
+  color: white;
+}
+
+th.comment {
+  background-color: #467270;
+  color: white;
+}
+
+a.comment {
+  color: white;
+}
+
+th.arch {
+  background-color: #57000d;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+
+/*hover ha d'estar per sota de nth-child, sinó no funciona ja que sempre s'aplica el nth-child un cop s'ha aplicat el hover*/
+
+tr:hover {
+  background-color: #F4FA58
+}
+
+td.error {
+  background-color: #ff0000
+}
+
+td.warning {
+  background-color: #f9c600
+}
+
+td.ok {
+  background-color: #007e06
+}
+
+td.active {
+  background-color: #5fbe05
+}
+
+td.inactive {
+  background-color: #22403b;
+  color: white;
+}
+
+a.inactive {
+  color: white;
+}
+
+td.disabled {
+  background-color: #09b9ff
+}
+
+td.ok {
+  background-color: #c6ecc6
+}
+
+
+/* Estils pel peu */
+
+p {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+p.small {
+  font: 9px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+/* Ocultme el gràfic amb id #chart per defecte*/
+
+#chart {
+  display: block;
+}
+
+
+
+/* Estils per la pàgina dashboard */
+
+.row0 {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+}
+.row1 {
+  position: absolute;
+  top: 100px;
+  left: 600px;
+}
+.row2 {
+  position: absolute;
+  top: 100px;
+  left: 1200px;
+}
+
+.row3 {
+  position: absolute;
+  top: 575px;
+  left: 0px;
+  }
+.row4 {
+  position: absolute;
+  top: 575px;
+  left: 600px;
+}
+.row5 {
+  position: absolute;
+  top: 575px;
+  left: 1200px;
+}
+
+.row6 {
+  position: absolute;
+  top: 1050px;
+  left: 0px;
+  }
+.row7 {
+  position: absolute;
+  top: 1050px;
+  left: 600px;
+}
+.row8 {
+  position: absolute;
+  top: 1050px;
+  left: 1200px;
+}
+
+@media (max-width: 640px) {
+  .float {
+      position: static;
+      float:left;
+  }
+  .container-fluid {
+      margin: auto;
+  }
+}

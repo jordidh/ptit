@@ -1,0 +1,23 @@
+extends layout
+
+block variables
+    - var msgAlert = m_alert
+    - var msgSuccess = m_success
+    - var msgInfo = m_info
+    - var msgWarning = m_warning
+
+block content
+  div.center
+    form(action='goto', method='get')
+      div.center
+          img(src='/images/ptit.png',  alt="Ptit")
+          p Escriu l'enllaç petit i et redirigirem al seu enllaç llarg
+      div.center
+          | 🚀 Obre &nbsp;
+          input.ghost-input(name='urlptita', type='text', value='')
+      div.center
+          input.ghost-button(name='btn', type='submit', value='Obre l\'enllaç')
+
+      div.center
+        p Si vols poder crear enllaços petits 
+          a(href='/createaccount') registra't com a usuari 
