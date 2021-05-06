@@ -7,9 +7,8 @@ block variables
     - var msgWarning = m_warning
 
 block content
-  p #{baseUrl}
   div.center
-    form(action='goto', method='get')
+    form(action=baseUrl + '/goto', method='get')
       div.center
           img(src=baseUrl + '/images/ptit.png',  alt="Ptit")
           p Escriu l'enllaç petit i et redirigirem al seu enllaç llarg
