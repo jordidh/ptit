@@ -8,7 +8,7 @@ block variables
 
 block content
   div.center
-    form(action=(baseUrl? baseUrl : '') + 'signin', method='post')
+    form(action='signin', method='post')
       div.center
           img(src='/images/ptit.png',  alt="Ptit")
       div.center
@@ -24,4 +24,4 @@ block content
 
       div.center
         p Si vols poder crear enllaços petits 
-          a(href=(baseUrl? baseUrl : '') + 'users/createaccount') registra't com a usuari
+          a(href=(baseUrl? baseUrl : '') + '/users/createaccount') registra't com a usuari
