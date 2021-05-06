@@ -8,9 +8,9 @@ block variables
 
 block content
   div.center
-    form(action=baseUrl + '/signin', method='post')
+    form(action=(baseUrl? baseUrl : '') + 'signin', method='post')
       div.center
-          img(src=baseUrl + '/images/ptit.png',  alt="Ptit")
+          img(src='/images/ptit.png',  alt="Ptit")
       div.center
           | Nom &nbsp;
           input.ghost-input(name='username', type='text', value='')
@@ -24,4 +24,4 @@ block content
 
       div.center
         p Si vols poder crear enllaços petits 
-          a(href=baseUrl + '/users/createaccount') registra't com a usuari 
+          a(href=(baseUrl? baseUrl : '') + 'users/createaccount') registra't com a usuari

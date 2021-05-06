@@ -8,9 +8,9 @@ block variables
 
 block content
   div.center
-    form(action=baseUrl + '/goto', method='get')
+    form(action=(baseUrl? baseUrl : '') + 'goto', method='get')
       div.center
-          img(src=baseUrl + '/images/ptit.png',  alt="Ptit")
+          img(src='/images/ptit.png',  alt="Ptit")
           p Escriu l'enllaç petit i et redirigirem al seu enllaç llarg
       div.center
           | 🚀 Obre &nbsp;
@@ -20,4 +20,4 @@ block content
 
       div.center
         p Si vols poder crear enllaços petits 
-          a(href=baseUrl + '/users/createaccount') registra't com a usuari 
+          a(href=(baseUrl? baseUrl : '') + 'users/createaccount') registra't com a usuari 
