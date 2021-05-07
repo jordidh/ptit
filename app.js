@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const config = require('./config/config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -35,7 +36,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('index', { title: 'Ptit', m_alert: err.message });
+  res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL, m_alert: err.message });
 });
 
 module.exports = app;
