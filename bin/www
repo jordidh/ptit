@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('ptit:server');
 var http = require('http');
 var config = require('../config/config');
+var stoppable = require('stoppable');
 
 /**
  * Get port from environment and store in Express.
@@ -19,8 +20,9 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
-var server = http.createServer(app);
+//var server = http.createServer(app);
+// Creem el servei de forma que es pugui tancar
+var server = stoppable(http.createServer(app));
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -90,3 +92,18 @@ function onListening() {
   debug('Listening on ' + bind);
   console.log('Listening on ' + bind);
 }
+
+// Capturem la senyal de tancament per gestionar-los de forma controlada i segura
+process.on('SIGINT', shutdown); 
+
+// Do graceful shutdown 
+function shutdown() { 
+  console.log('graceful shutdown express'); 
+  server.close(function (err) {
+    if (err) {
+      console.error('An error occurred while closing the server: ' + err);
+      process.exitCode = 1;
+    }
+    console.log('closed express'); 
+  }); 
+} 
