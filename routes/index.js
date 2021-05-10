@@ -33,6 +33,7 @@ router.get('/goto', function(req, res, next) {
       res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL, m_alert: `Enllaç "${req.query.urlptita}" no trobat`  });
     }
   } catch(e) {
+    req.log.error(e);
     res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL, m_alert: e.message });
   }
 });

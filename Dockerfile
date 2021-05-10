@@ -23,5 +23,8 @@ USER onion
 RUN npm install
 # Exposem el port de l'aplicacio
 EXPOSE 3000
+# Definim el check per verificar que l'aplicació no estàpenjada
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s \
+            CMD curl --fail http://localhost:3000 || exit 1
 # Definim la comanda per executar l'aplicacio. Fallarà fins que no s'hi afegeixi el volum amb la configuracio
 CMD ["node", "bin/www"]
