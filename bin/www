@@ -100,12 +100,12 @@ process.on('SIGINT', shutdown);
 
 // Do graceful shutdown 
 function shutdown() { 
-  logger.trace('graceful shutdown express'); 
+  logger.info('graceful shutdown express'); 
   server.close(function (err) {
     if (err) {
       logger.error('An error occurred while closing the server: ' + err);
       process.exitCode = 1;
     }
-    logger.trace('closed express'); 
+    logger.info('closed express'); 
   }); 
 } 
