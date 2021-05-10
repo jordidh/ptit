@@ -96,7 +96,8 @@ function onListening() {
 }
 
 // Capturem la senyal de tancament per gestionar-los de forma controlada i segura
-process.on('SIGINT', shutdown); 
+process.on('SIGINT', shutdown);   // Quan l'usuari vol tancar el procés amb Control+C
+process.on('SIGTERM', shutdown);  // Quan es vol tancar elprocés de forma amable, aplicacions com kill o killall lenvien des del terminal
 
 // Do graceful shutdown 
 function shutdown() { 
