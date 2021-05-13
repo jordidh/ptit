@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 //var logger = require('morgan');
 const config = require('./config/config');
 const pino = require('pino-http')();
+const logger = require('pino')();
+
+var PersistentData = require('./database/database');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -40,5 +43,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('index', { title: 'Ptit', baseUrl: config.APP_CLIENT_BASE_URL, m_alert: err.message });
 });
+
+// Comprobem que la BD té les taules necessàries i sinó les creem
+var data = new PersistentData().getInstance();
+(async function databaseInit() {
+  let res = await data.CheckDatabaseTables();
+  if (res.error.length > 0) {
+    logger.error(res.error[0]);
+  } else {
+    logger.info(res.result[0]);
+  }
+})();
 
 module.exports = app;

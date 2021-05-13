@@ -110,3 +110,15 @@ function shutdown() {
     logger.info('closed express'); 
   }); 
 } 
+
+process
+  .on('SIGINT', function() {
+  })
+  .on("SIGTERM", () => {
+  })    
+  .on("unhandledRejection", (reason, p) => {
+      console.error(reason, "Unhandled Rejection at Promise", p)
+  })
+  .on("uncaughtException", (err) => {
+      console.error(err, "Uncaught Exception thrown")
+  });

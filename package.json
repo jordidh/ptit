@@ -1,6 +1,6 @@
 {
   "name": "ptit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -13,6 +13,7 @@
     "morgan": "~1.9.1",
     "pino-http": "^5.5.0",
     "pug": "^3.0.2",
+    "sqlite3": "^5.0.2",
     "stoppable": "^1.1.0"
   }
 }
