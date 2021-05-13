@@ -11,13 +11,31 @@ block content
     form(action='/goto', method='get' target="_blank")
       div.center
           img(src='/images/ptit.png',  alt="Ptit")
+      div.centerBig
           p Escriu l'enllaç petit i et redirigirem al seu enllaç llarg
-      div.center
           | 🚀 Obre &nbsp;
           input.ghost-input(name='urlptita', type='text', value='')
       div.center
           input.ghost-button(name='btn', type='submit', value='Obre l\'enllaç')
 
+  div.center
+    form(action='/newTempUrlPair', method='get')
       div.center
-        p Si vols poder crear enllaços petits 
+          p Crea una nova parella d'enllaços petit-llarg temporal:
+          | Url Petita &nbsp;
+          input.ghost-input(name='urlptita', type='text', value='')
+          br
+          | Url Llarga &nbsp;
+          input.ghost-input(name='urlllarga', type='text', value='')
+          br
+          | Duració &nbsp;
+          input#male(type='radio' name='duracio' value='24' checked="checked")
+          label(for='male') 24h
+          input#female(type='radio' name='duracio' value='48')
+          label(for='female') 48h
+      div.center
+          input.ghost-button(name='btn', type='submit', value='Crea la parella d\'enllaços')
+
+      div.center
+        p Si vols poder crear enllaços permanents &nbsp;
           a(href=(baseUrl? baseUrl : '') + '/users/createaccount') registra't com a usuari 

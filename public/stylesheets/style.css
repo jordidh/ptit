@@ -1,5 +1,5 @@
 body {
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
 }
 
@@ -8,6 +8,14 @@ a {
 }
 
 .center {
+  margin: auto;
+  width: 50%;
+  border: 0px solid green;
+  padding: 10px;
+}
+
+.centerBig {
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: auto;
   width: 50%;
   border: 0px solid green;
