@@ -18,6 +18,22 @@ block content
       div.center
           input.ghost-button(name='btn', type='submit', value='Obre l\'enllaç')
 
+  if (topUrls)
+    div.center
+      table
+        thead
+            tr
+                th Ptit url
+                th Long url
+                th visits
+
+        tbody
+            each url, i in topUrls
+                tr
+                    td #{url.ptitUrl}
+                    td #{url.url}
+                    td #{url.clicks}
+
   div.center
     form(action='/newTempUrlPair', method='get')
       div.center
@@ -26,7 +42,7 @@ block content
           input.ghost-input(name='urlptita', type='text', value='')
           br
           | Url Llarga &nbsp;
-          input.ghost-input(name='urlllarga', type='text', value='')
+          input.ghost-input(name='urlllarga', type='text', placeholder='https://ptit.info', value='')
           br
           | Duració &nbsp;
           input#male(type='radio' name='duracio' value='24' checked="checked")

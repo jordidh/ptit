@@ -22,6 +22,8 @@ class PersistentData {
                 name TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL,
                 createdAt REAL NOT NULL,
+                loggedAt REAL NOT NULL,
+                lastActionAt REAL NOT NULL,
                 active INTEGER NOT NULL
             )`);
 
@@ -32,7 +34,8 @@ class PersistentData {
                 url TEXT NOT NULL,
                 createdAt REAL NOT NULL,
                 endsAt REAL,
-                userId INTEGER
+                userId INTEGER,
+                clicks INTEGER DEFAULT 0
             )`);
 
             return {
@@ -46,6 +49,122 @@ class PersistentData {
             }
         }
     }
+
+    /**
+     * Funció que recupera una parella d'enllaços a partir de l'enllaç curt
+     * Retorna un objecte del tipus:
+     * {
+     *      "error": [],
+     *      "result": []
+     * }
+     * @param {*} urlptita : string amb el codi de la urlptita
+     */
+    getUrlPairFromPtit = async function(ptitUrl) {
+        try {
+            let data = {};
+
+            data = await sqlite.all(`SELECT * FROM urlPair WHERE ptitUrl = '${ptitUrl}' LIMIT 1`);
+            if (data && data != null && Array.isArray(data) && data.length > 0){
+                return {
+                    "error" : [],
+                    "result" : data
+                }
+            } else {
+                return {
+                    "error" : [],
+                    "result" : []
+                }
+            }
+        } catch (err) {
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+    /**
+     * Funció que obté els parells d'urls més clickats
+     * @param {*} topUrlPairs 
+     */
+    getMostClickedUrlPairs = async function(topUrlPairs) {
+        try {
+            let data = {};
+
+            data = await sqlite.all(`SELECT * FROM urlPair ORDER BY clicks DESC LIMIT ${topUrlPairs}`);
+            if (data && data != null && Array.isArray(data) && data.length > 0){
+                return {
+                    "error" : [],
+                    "result" : data
+                }
+            } else {
+                return {
+                    "error" : [],
+                    "result" : []
+                }
+            }
+        } catch (err) {
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+    /**
+     * Funció que crea un nou parell url
+     * @param {*} urlpair 
+     */
+    saveNewUrlPair = async function(urlpair) {
+        try {
+            let sql = `INSERT INTO urlPair (ptitUrl, url, createdAt, endsAt, userId) 
+                       VALUES ('${urlpair.ptitUrl}', 
+                               '${urlpair.url}', 
+                                ${urlpair.createdAt}, 
+                                ${urlpair.endsAt}, 
+                                ${urlpair.userId})`;
+
+            let result = await sqlite.run(sql);
+
+            return {
+                "error" : [ ],
+                "result" : result
+            }
+        } catch (err) {
+            console.error(err);
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+    /**
+     * Funció que incrementa els clicks d'un parell d'urls
+     * @param {*} urlpair 
+     */
+    clickUrlPair = async function(id) {
+        try {
+            let sql = `UPDATE urlPair SET clicks = clicks + 1 WHERE id = ${id};`;
+            let result = await sqlite.run(sql);
+
+            return {
+                "error" : [ ],
+                "result" : result
+            }
+        } catch (err) {
+            console.error(err);
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+
+
+
+
 
     /**
      * Funció que recuperem l'última dada emmagatzemada per aquest mercat
