@@ -3,6 +3,7 @@ var router = express.Router();
 const config = require('../config/config');
 
 const urls = require('../database/urls.json');
+
 let PersistentData = require('../database/database');
 let data = new PersistentData().getInstance();
 
@@ -13,6 +14,8 @@ const MAX_NUM_TOP_URLS = 5;
  */
 router.get('/', async function(req, res, next) {
   try {
+    res.locals.userLogged = req.user;
+    
     let topUrls = await data.getMostClickedUrlPairs(MAX_NUM_TOP_URLS);
 
     // Error recuperant la url de la BD
@@ -36,6 +39,8 @@ router.get('/', async function(req, res, next) {
 router.get('/goto', async function(req, res, next) {
   //res.render('index', { title: 'Ptit' });
   try {
+    res.locals.userLogged = req.user;
+
     //let found = urls.find(u => u.urlptita === req.query.urlptita);
     let found = await data.getUrlPairFromPtit(req.query.urlptita);
 
@@ -77,6 +82,8 @@ router.get('/goto', async function(req, res, next) {
 router.get('/newTempUrlPair', async function(req, res, next) {
   //res.render('index', { title: 'Ptit' });
   try {
+    res.locals.userLogged = req.user;
+
     //let found = urls.find(u => u.urlptita === req.query.urlptita);
     let found = await data.getUrlPairFromPtit(req.query.urlptita);
 
@@ -100,8 +107,9 @@ router.get('/newTempUrlPair', async function(req, res, next) {
       url: req.query.urlllarga,
       createdAt: now,
       endsAt: (req.query.duracio === "24" ? now + 86400000 : now + 172800000 ),
-      userId: 0
+      userId: (req.user && req.user.id ? req.user.id : 0)
     }
+
     let created = await data.saveNewUrlPair(newPair);
 
     // Error creant la url de la BD

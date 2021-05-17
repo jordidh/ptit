@@ -8,7 +8,7 @@ block variables
 
 block content
   div.center
-    form(action='/signin', method='post')
+    form(action='/users/signin', method='post')
       div.center
           img(src='/images/ptit.png',  alt="Ptit")
       div.center
@@ -16,7 +16,7 @@ block content
           input.ghost-input(name='username', type='text', value='')
           br
           | Contrasenya &nbsp;
-          input.ghost-input(name='password', type='text', value='')
+          input.ghost-input(name='password', type='password', value='')
       div.center
           input.ghost-button(name='btnSignIn', type='submit', value='Sign In')
           | &nbsp; &nbsp;

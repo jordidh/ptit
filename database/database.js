@@ -17,7 +17,7 @@ class PersistentData {
     CheckDatabaseTables = async function() {
         try {
             // Taula d'usuaris
-            await sqlite.run(`CREATE TABLE IF NOT EXISTS users (
+            await sqlite.run(`CREATE TABLE IF NOT EXISTS user (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL,
@@ -161,10 +161,92 @@ class PersistentData {
         }
     }
 
+    /**
+     * Funció que registra un nou usuari
+     * @param {*} username 
+     * @param {*} password 
+     */
+    saveNewUser = async function(username, password) {
+        try {
+            let now = (new Date()).getTime();
+            let sql = `INSERT INTO user (name, password, createdAt, loggedAt, lastActionAt, active) 
+                       VALUES ('${username}', 
+                               '${password}', 
+                                ${now}, 
+                                ${now}, 
+                                ${now}, 
+                                1)`;
 
+            let result = await sqlite.run(sql);
 
+            return {
+                "error" : [ ],
+                "result" : result
+            }
+        } catch (err) {
+            console.error(err);
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
 
+    /**
+     * Funció que busca usuaris amb el nom proporcionat
+     * @param {*} username 
+     */
+    findByUsername = async function(username) {
+        try {
+            let data = {};
 
+            data = await sqlite.all(`SELECT * FROM user WHERE name = '${username}' LIMIT 1`);
+            if (data && data != null && Array.isArray(data) && data.length > 0){
+                return {
+                    "error" : [],
+                    "result" : data
+                }
+            } else {
+                return {
+                    "error" : [],
+                    "result" : []
+                }
+            }
+        } catch (err) {
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+    /**
+     * Funció que busca usuaris amb el id proporcionat
+     * @param {*} username 
+     */
+    findById = async function(id) {
+        try {
+            let data = {};
+
+            data = await sqlite.all(`SELECT * FROM user WHERE id = '${id}'`);
+            if (data && data != null && Array.isArray(data) && data.length > 0){
+                return {
+                    "error" : [],
+                    "result" : data
+                }
+            } else {
+                return {
+                    "error" : [],
+                    "result" : []
+                }
+            }
+        } catch (err) {
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
 
     /**
      * Funció que recuperem l'última dada emmagatzemada per aquest mercat

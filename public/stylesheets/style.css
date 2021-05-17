@@ -30,6 +30,21 @@ footer {
   margin: 20px;
 }
 
+/* Estils per taules */
+table {
+  width: 100%;
+  table-layout: fixed;
+  text-align: left;
+}
+.twenty {
+  width: 20%;
+  background: tomato;
+}
+.heighty {
+  width: 80%;
+  background: turquoise
+}
+
 
 /* Estils per la barra de navegació superior */
 
@@ -181,7 +196,7 @@ table {
 
 th,
 td {
-  text-align: center;
+  text-align: left;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
   text-overflow: ellipsis;

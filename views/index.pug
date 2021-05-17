@@ -18,21 +18,19 @@ block content
       div.center
           input.ghost-button(name='btn', type='submit', value='Obre l\'enllaç')
 
-  if (topUrls)
-    div.center
-      table
-        thead
-            tr
-                th Ptit url
-                th Long url
-                th visits
-
-        tbody
-            each url, i in topUrls
+      if (topUrls)
+        div.center
+          table
+            thead
                 tr
-                    td #{url.ptitUrl}
-                    td #{url.url}
-                    td #{url.clicks}
+                    th(class='twenty') Ptit url
+                    th(class='eighty') Long url (visites)
+
+            tbody
+                each url, i in topUrls
+                    tr
+                        td #{url.ptitUrl}
+                        td #{url.url} (#{url.clicks})
 
   div.center
     form(action='/newTempUrlPair', method='get')
@@ -52,6 +50,7 @@ block content
       div.center
           input.ghost-button(name='btn', type='submit', value='Crea la parella d\'enllaços')
 
-      div.center
-        p Si vols poder crear enllaços permanents &nbsp;
-          a(href=(baseUrl? baseUrl : '') + '/users/createaccount') registra't com a usuari 
+      if (!userLogged)
+        div.center
+          p Si vols poder crear enllaços permanents &nbsp;
+            a(href=(baseUrl? baseUrl : '') + '/users/createaccount') registra't com a usuari 
