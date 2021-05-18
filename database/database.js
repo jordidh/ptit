@@ -112,6 +112,34 @@ class PersistentData {
     }
 
     /**
+     * Funció que obté els parells d'urls d'un usuari
+     * @param {*} userId
+     */
+    getUsersUrlPairs = async function(userId) {
+        try {
+            let data = {};
+
+            data = await sqlite.all(`SELECT * FROM urlPair WHERE userId = ${userId} ORDER BY clicks DESC`);
+            if (data && data != null && Array.isArray(data) && data.length > 0){
+                return {
+                    "error" : [],
+                    "result" : data
+                }
+            } else {
+                return {
+                    "error" : [],
+                    "result" : []
+                }
+            }
+        } catch (err) {
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+    /**
      * Funció que crea un nou parell url
      * @param {*} urlpair 
      */
@@ -123,6 +151,29 @@ class PersistentData {
                                 ${urlpair.createdAt}, 
                                 ${urlpair.endsAt}, 
                                 ${urlpair.userId})`;
+
+            let result = await sqlite.run(sql);
+
+            return {
+                "error" : [ ],
+                "result" : result
+            }
+        } catch (err) {
+            console.error(err);
+            return {
+                "error" : [ err ],
+                "result" : []
+            }
+        }
+    }
+
+    /**
+     * Funció que elimina un nou parell url
+     * @param {*} urlPairId
+     */
+    deleteNewUrlPair = async function(urlPairId) {
+        try {
+            let sql = `DELETE FROM urlPair WHERE id = ${urlPairId}`;
 
             let result = await sqlite.run(sql);
 

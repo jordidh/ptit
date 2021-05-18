@@ -8,5 +8,51 @@ block variables
 
 block content
   div.center
-    img(src='/images/ptit.png',  alt="Ptit")
-    p Users Profile
+    form(action='/users/newUrlPair', method='get')
+      div.center
+          img(src='/images/ptit.png',  alt="Ptit")          
+      div.center
+          p Crea una nova parella d'enllaços petit-llarg temporal:
+          | Url Petita &nbsp;
+          input.ghost-input(name='urlptita', type='text', value='')
+          br
+          | Url Llarga &nbsp;
+          input.ghost-input(name='urlllarga', type='text', placeholder='https://ptit.info', value='')
+          br
+          | Duració &nbsp;
+          input#male(type='radio' name='duracio' value='24' checked="checked")
+          label 24h
+          input#female(type='radio' name='duracio' value='48')
+          label 48h
+          input#female(type='radio' name='duracio' value='Permanent')
+          label Permanent
+      div.center
+          input.ghost-button(name='btn', type='submit', value='Crea la parella d\'enllaços')
+
+      if (!userLogged)
+        div.center
+          p Si vols poder crear enllaços permanents &nbsp;
+            a(href=(baseUrl? baseUrl : '') + '/users/createaccount') registra't com a usuari 
+
+      if (myUrls)
+        div.center
+          p Els meus enllaços
+          table
+            thead
+                tr
+                    th(class='twenty') Ptit url
+                    th(class='seventy') Long url (visites)
+                    th(class='ten') ...
+
+            tbody
+                each url, i in myUrls
+                    tr
+                        td #{url.ptitUrl}
+                        td
+                          if url.endsAt > 0 
+                            a(href=url.url) #{url.url} (#{url.clicks}) ⏰
+                          else
+                            a(href=url.url) #{url.url} (#{url.clicks}) ♾️
+                        td 
+                          a(href='/users/delUrlPair/' + url.id) ❌ &nbsp; 
+                          a(href='/users/editUrlPair/' + url.id) ✏️

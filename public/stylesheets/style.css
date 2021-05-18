@@ -36,15 +36,26 @@ table {
   table-layout: fixed;
   text-align: left;
 }
+.ten {
+  width: 10%;
+  background: tomato;
+}
 .twenty {
   width: 20%;
   background: tomato;
+}
+.seventy {
+  width: 70%;
+  background: turquoise
 }
 .heighty {
   width: 80%;
   background: turquoise
 }
-
+.ninety {
+  width: 90%;
+  background: turquoise
+}
 
 /* Estils per la barra de navegació superior */
 
