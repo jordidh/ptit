@@ -12,7 +12,7 @@ block content
       div.center
           img(src='/images/ptit.png',  alt="Ptit")
       div.centerBig
-          p Escriu l'enllaç petit i et redirigirem al seu enllaç llarg
+          p Escriu un codi per obrir un enllaç
           | 🚀 Obre &nbsp;
           input.ghost-input(name='urlptita', type='text', value='')
       div.center
@@ -23,8 +23,8 @@ block content
           table
             thead
                 tr
-                    th(class='twenty') Ptit url
-                    th(class='eighty') Long url (visites)
+                    th(class='twenty') Codi
+                    th(class='eighty') Enllaç (visites)
 
             tbody
                 each url, i in topUrls
@@ -35,20 +35,20 @@ block content
   div.center
     form(action='/newTempUrlPair', method='get')
       div.center
-          p Crea una nova parella d'enllaços petit-llarg temporal:
-          | Url Petita &nbsp;
+          p Crea una nova parella codi-enllaç temporal:
+          | Codi &nbsp;
           input.ghost-input(name='urlptita', type='text', value='')
           br
-          | Url Llarga &nbsp;
+          | Enllaç &nbsp;
           input.ghost-input(name='urlllarga', type='text', placeholder='https://ptit.info', value='')
           br
-          | Duració &nbsp;
+          | Temps de vida de l'enllaç &nbsp;
           input#male(type='radio' name='duracio' value='24' checked="checked")
           label 24h
           input#female(type='radio' name='duracio' value='48')
           label 48h
       div.center
-          input.ghost-button(name='btn', type='submit', value='Crea la parella d\'enllaços')
+          input.ghost-button(name='btn', type='submit', value='Crea')
 
       if (!userLogged)
         div.center
